@@ -2,9 +2,9 @@
 function in1to10($num,$outside_num) {
   if ($outside_num){
     echo "True\n";
-} elseif ($outside_num == "false" && 0 < $num || $num < 11){
+ } elseif ($outside_num == "false" && 0 < $num || $num < 11){
     echo "True\n";
-  }else {
+  } else {
     echo "False\n";
   }
 }
