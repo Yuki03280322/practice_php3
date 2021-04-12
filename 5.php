@@ -9,7 +9,6 @@ function police_trouble($a,$b) {
 
 police_trouble(false, false);
 police_trouble(true, false);
-police_trouble(false, false);
 police_trouble(false, true);
 police_trouble(true, true);
 
