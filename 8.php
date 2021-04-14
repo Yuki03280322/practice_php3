@@ -17,3 +17,5 @@ parrot_call(true,22);
 parrot_call(true,23);
 
 ?>
+
+<!-- 鳥の鳴き声が聞こえると良くない時間かどうかを返す -->

@@ -12,3 +12,5 @@ count_code("acodecount");
 count_code("codecount");
 count_code("wherecodefrom");
 ?>
+
+<!-- 文字列から文字を検索しその文字が左から何番目にあるか -->

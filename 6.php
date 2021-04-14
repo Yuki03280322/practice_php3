@@ -26,3 +26,5 @@ count_what("whywhowhere");
 count_what("WhatWhatwhat")
 
 ?>
+
+<!-- 文字列から特定の文字を検索する -->

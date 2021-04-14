@@ -14,3 +14,5 @@ foreach($food_price as $key=>$value) {
 }
 
 ?>
+
+<!-- 商品の合計金額を出力する -->
