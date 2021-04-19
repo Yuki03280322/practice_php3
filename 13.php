@@ -16,15 +16,50 @@ for($i = 1; $i<=date("t"); $i++) {
   echo $i.",";
 }
 
-$file = new SplFileObject("syukujitsu.csv");
-$file->setFlags(SplFileObject::READ_CSV);
-$syuku_array = array();
-foreach($file as $line) {
-  if(isset($line[1])) {
-    $date = date("Y-m-d", strtotime($line[0]));
-    $name = $line[1];
-    $syuku_array[$date] = $name;
+function httpGet($url) {
+  $option = [
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT => 10,
+  ];
+
+  $ch = curl_init($url);
+  curl_setopt_array($ch, $option);
+
+  $data = curl_exec($ch);
+  $info = curl_getinfo($ch);
+  $errorNo = curl_errno($ch);
+
+  if ($errorNo !== CURLE_OK) {
+    return [];
   }
+
+  if ($info['http_code'] !== 200) {
+    return false;
+  }
+
+  return $data;
 }
+
+
+
+function loadHolidays() {
+  $url = 'https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv';
+  $data = httpGet($url);
+  if (!$data) {
+    throw new Exception("祝日データ取得に失敗");
+  }
+  $data = mb_convert_encoding($data, 'UTF-8', 'SJIS');
+  $lines = explode("\n", $data);
+  $holidays = [];
+  foreach ($lines as $line) {
+    $cols = explode(",", $line);
+    $holidays[] = [ trim($cols[0]), trim($cols[1]) ];
+  }
+  print_r($holidays);
+  return $holidays;
+}
+
+loadHolidays();
+
 
 ?>
