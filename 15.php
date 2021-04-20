@@ -10,3 +10,5 @@ function calculation($num) {
 }
 calculation($num);
 ?>
+
+<!-- 標準入力、出力 -->
