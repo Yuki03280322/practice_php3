@@ -13,17 +13,17 @@ echo "今月の末日は".date("t")."日です\n";
 echo "今日の曜日は".$week[date("w")]."です\n";
 
 function httpGet($url) {
-  $option = [
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_TIMEOUT => 10,
+  $option = [//cURL:HTTPリクエストをすることにより、外部サイトの情報を取得することができる関数
+    CURLOPT_RETURNTRANSFER => true,//curl_exec()を実行時、返り値を文字列で返す
+    CURLOPT_TIMEOUT => 10,//curl関数の実行にかけられる時間の最大値
   ];
 
-  $ch = curl_init($url);
-  curl_setopt_array($ch, $option);
+  $ch = curl_init($url);//curlセッションを初期化
+  curl_setopt_array($ch, $option);//curl転送用の複数のオプションを設定する
 
-  $data = curl_exec($ch);
-  $info = curl_getinfo($ch);
-  $errorNo = curl_errno($ch);
+  $data = curl_exec($ch);//curlのセッションの実行時に使用,セッションの初期化、オプション設定後に使用
+  $info = curl_getinfo($ch);//HTTPステータスコードなどの転送データに関わる情報を取得
+  $errorNo = curl_errno($ch);//curlを実行した際に発生したエラーを確認するための記述
 
   if ($errorNo !== CURLE_OK) {
     return [];
