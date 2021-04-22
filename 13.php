@@ -12,10 +12,6 @@ $week = array(
 echo "今月の末日は".date("t")."日です\n";
 echo "今日の曜日は".$week[date("w")]."です\n";
 
-for($i = 1; $i<=date("t"); $i++) {
-  echo $i.",";
-}
-
 function httpGet($url) {
   $option = [
     CURLOPT_RETURNTRANSFER => true,
@@ -40,26 +36,35 @@ function httpGet($url) {
   return $data;
 }
 
-
-
-function loadHolidays() {
-  $url = 'https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv';
-  $data = httpGet($url);
-  if (!$data) {
-    throw new Exception("祝日データ取得に失敗");
-  }
-  $data = mb_convert_encoding($data, 'UTF-8', 'SJIS');
-  $lines = explode("\n", $data);
-  $holidays = [];
-  foreach ($lines as $line) {
-    $cols = explode(",", $line);
-    $holidays[] = [ trim($cols[0]), trim($cols[1]) ];
-  }
-  print_r($holidays);
-  return $holidays;
+$url = 'https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv';
+$data = httpGet($url);
+if (!$data) {
+  throw new Exception("祝日データ取得に失敗");
+}
+$data = mb_convert_encoding($data, 'UTF-8', 'SJIS');
+$lines = explode("\n", $data);
+$holidays = [];
+foreach ($lines as $line) {
+  $cols = explode(",", $line);
+  $holidays[] = [ trim($cols[0]), trim($cols[1]) ];
 }
 
-loadHolidays();
+echo "日付を入力してください\n";
+$date = trim(fgets(STDIN));
 
+$count = 0;
+foreach($holidays as $holiday) {
+  if (in_array($date, $holiday)) {
+    $count += 1;
+  }
+}
+
+if ($count > 0) {
+  echo "祝日です\n";
+} else {
+  echo "祝日ではありません\n";
+}
 
 ?>
+
+<!-- 入力された日付が祝日かどうかを判断する -->
