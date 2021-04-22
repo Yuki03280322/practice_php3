@@ -49,7 +49,7 @@ foreach ($lines as $line) {
   $holidays[] = [ trim($cols[0]), trim($cols[1]) ];
 }
 
-echo "日付を入力してください\n";
+echo "日付を入力してください(入力例:2021/4/22)\n";
 $date = trim(fgets(STDIN));
 
 $count = 0;
