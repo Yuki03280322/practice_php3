@@ -10,39 +10,42 @@ foreach($tmp as $value) {
 $math = $array[0];
 
 $check = array();
-for($i = 1; $i <= $math[0]; $i++) {
-  array_push($check, $array[$i]);
+for($x = 1; $x <= $math[0]; $x++) {
+  array_push($check, $array[$x]);
 }
-foreach($check as $key1 => $val1) {
-  foreach($val1 as $v1) {
-    $new_check[] = $v1;
+foreach($check as $key => $val) {
+  foreach($val as $v) {
+    $slice = str_split($v);
+    $slice_check[] = $slice;
+  }
+}
+foreach($slice_check as $key => $val) {
+  foreach($val as $v) {
+    $new_check[] = $v;
   }
 }
 
 $panel = array();
-for($a = $i; $a < $math[0] + $i; $a++) {
-  array_push($panel, $array[$a]);
+for($y = $x; $y < $math[0] + $x; $y++) {
+  array_push($panel, $array[$y]);
 }
-foreach($panel as $key2 => $val2) {
-  foreach($val2 as $v2) {
-    $new_panel[] = $v2;
+foreach($panel as $key => $val) {
+  foreach($val as $v) {
+    $new_panel[] = $v;
   }
 }
 
 $count = 0;
 $judge_num = $math[0] * $math[1];
-
-$num = 0;
-foreach($new_check as $key3 => $val3) {
-  if($val3 == "○") {
-    echo $val3;
+for($z = 0; $z <= $judge_num; $z++) {
+  if(strpos($new_check[$z], 'o') !== false) {
+    $count += $new_panel[$z];
   }
 }
 
-// print_r($new_check);
-// print_r($new_panel);
-
+echo $count;
 
 ?>
 
-<!-- ストラックアウト（途中） -->
+<!-- ストラックアウト -->
+
