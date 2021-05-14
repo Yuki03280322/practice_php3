@@ -23,9 +23,25 @@ $panel = array();
 for($a = $i; $a < $math[0] + $i; $a++) {
   array_push($panel, $array[$a]);
 }
+foreach($panel as $key2 => $val2) {
+  foreach($val2 as $v2) {
+    $new_panel[] = $v2;
+  }
+}
 
 $count = 0;
 $judge_num = $math[0] * $math[1];
+
+$num = 0;
+foreach($new_check as $key3 => $val3) {
+  if($val3 == "○") {
+    echo $val3;
+  }
+}
+
+// print_r($new_check);
+// print_r($new_panel);
+
 
 ?>
 
