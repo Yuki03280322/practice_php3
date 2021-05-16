@@ -23,4 +23,7 @@ if(strpos($line, 'Z') !== false) {
 }
 echo $line;
 ?>
-<!-- Leet文字列 -->
+<!-- Leet文字列
+PAIZA
+P4124
+ -->
